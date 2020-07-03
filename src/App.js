@@ -1,15 +1,19 @@
-import React  from 'react';
+import React from "react";
 
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-
-// Components
-import FriendsContainer from './containers/FriendsContainer';
+import { Provider } from "react-redux";
+import { applyMiddleware, createStore } from "redux";
+import thunk from "redux-thunk";
 
 // reducer
-import friendsReducer from './reducers/friendsReducer';
+import rootReducer from "./reducers";
 
-const store = createStore(friendsReducer);
+// Components
+import FriendsContainer from "./containers/FriendsContainer";
+import { fetchAllFriends } from "./actions";
+
+const store = createStore(rootReducer, applyMiddleware(thunk));
+
+store.dispatch(fetchAllFriends());
 
 function App() {
   return (
