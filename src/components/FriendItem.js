@@ -1,9 +1,13 @@
-import TableCell from "@material-ui/core/TableCell";
-import classnames from "classnames";
-import TableRow from "@material-ui/core/TableRow";
 import React from "react";
+import classnames from "classnames";
+
+import TableCell from "@material-ui/core/TableCell";
+import TableRow from "@material-ui/core/TableRow";
+import DeleteIcon from "@material-ui/icons/Delete";
+import IconButton from "@material-ui/core/IconButton";
 
 const FriendItem = ({ id, name, gender, isStarred }) => {
+
   return (
     <TableRow key={id}>
       <TableCell className="text-secondary"> {id} </TableCell>
@@ -26,7 +30,12 @@ const FriendItem = ({ id, name, gender, isStarred }) => {
               })}
             />
           </button>
-        }{" "}
+        }
+      </TableCell>
+      <TableCell>
+        <IconButton area-label="delete" onClick={() => console.log("delete")}>
+          <DeleteIcon />
+        </IconButton>
       </TableCell>
     </TableRow>
   );

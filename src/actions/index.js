@@ -1,7 +1,54 @@
 import axios from "axios";
-import { FETCH_FRIEND } from "./types";
+import { ADD_FRIEND, DELETE_FRIEND, FETCH_FRIEND } from "./types";
 
 const friendsListUrl = "http://localhost:3020/friends";
+
+export const addFriend = ({ id, name, gender, isStarred }) => {
+  return dispatch => {
+    return axios
+      .post(`${friendsListUrl}`, { id, name, gender, isStarred })
+      .then(response => {
+        dispatch(addFriendSuccess(response.data));
+      })
+      .catch(error => {
+        throw error;
+      });
+  };
+};
+
+export const addFriendSuccess = data => {
+  return {
+    type: ADD_FRIEND,
+    payload: {
+      id: data.id,
+      name: data.name,
+      gender: data.gender,
+      isStarred: data.isStarred
+    }
+  };
+};
+
+export const deleteFriendSuccess = id => {
+  return {
+    type: DELETE_FRIEND,
+    payload: {
+      id
+    }
+  };
+};
+
+export const deleteFriend = id => {
+  return dispatch => {
+    return axios
+      .get(`${friendsListUrl}/delete/${id}`)
+      .then(response => {
+        dispatch(deleteFriendSuccess(response.data));
+      })
+      .catch(error => {
+        throw error;
+      });
+  };
+};
 
 export const fetchFriend = friends => {
   return {
@@ -19,9 +66,9 @@ export const fetchAllFriends = () => {
           fetchFriend(
             response.data.map(friend => ({
               id: `${friend.id}`,
-              name: `${friend.Name}`,
-              sex: `${friend.sex}`,
-              isStared: `${friend.isStared}`
+              name: `${friend.name}`,
+              gender: `${friend.gender}`,
+              isStarred: `${friend.isStarred}`
             }))
           )
         );
