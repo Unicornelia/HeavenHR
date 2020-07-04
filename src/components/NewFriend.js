@@ -9,12 +9,14 @@ import Button from "@material-ui/core/Button";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Radio from "@material-ui/core/Radio";
+
 import Header from "./Header";
+import Checkbox from "@material-ui/core/Checkbox";
 
 const NewFriend = props => {
   const [name, setName] = useState("");
   const [gender, setGender] = useState("");
-  const [isStared, setIsStared] = useState(false);
+  const [isStarred, setIsStarred] = useState(false);
 
   const history = useHistory();
 
@@ -33,7 +35,7 @@ const NewFriend = props => {
   const handleSubmit = e => {
     e.preventDefault();
     if (name && gender) {
-      const newFriend = { id: generateId(), name, gender, isStared };
+      const newFriend = { id: generateId(), name, gender, isStarred };
       props.onAddFriend(newFriend);
       history.push("/");
     }
@@ -86,7 +88,21 @@ const NewFriend = props => {
                 }
                 label="Male"
               />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    area-label="isStarred"
+                    checked={isStarred}
+                    size="small"
+                    onChange={() => {
+                      setIsStarred(!isStarred);
+                    }}
+                  />
+                }
+                label="Starred?"
+              />
             </RadioGroup>
+
             <Button
               style={{ width: "80px", height: "40px" }}
               variant="outlined"

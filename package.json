@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.4.3",
+    "@material-ui/lab": "^4.0.0-alpha.56",
     "classnames": "^2.2.6",
     "json-server": "^0.15.1",
     "prop-types": "^15.7.2",

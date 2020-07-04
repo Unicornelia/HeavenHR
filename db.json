@@ -11,6 +11,18 @@
       "name": "Abraham Lincoln",
       "gender": "male",
       "isStarred": true
+    },
+    {
+      "id": "886cffcc-8829-409c-821f-72a3ff25b53f",
+      "name": "Mary Jane",
+      "gender": "female",
+      "isStarred": true
+    },
+    {
+      "id": "9d9db350-665c-4370-b984-b3f60ca1b1ae",
+      "name": "John Doe",
+      "gender": "male",
+      "isStarred": false
     }
   ]
 }
