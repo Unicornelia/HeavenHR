@@ -1,16 +1,16 @@
 {
   "friends": [
-  {
-    "id": "4f733b92-e125-11e9-81b4-2a2ae2dbcce4",
-    "name": "Theodore Roosevelt",
-    "gender": "male",
-    "isStarred": true
-  },
-  {
-    "id": "4f733e1c-e125-11e9-81b4-2a2ae2dbcce4",
-    "name": "Abraham Lincoln",
-    "gender": "male",
-    "isStarred": true
-  }
-]
+    {
+      "id": "4f733b92-e125-11e9-81b4-2a2ae2dbcce4",
+      "name": "Theodore Roosevelt",
+      "gender": "male",
+      "isStarred": true
+    },
+    {
+      "id": "4f733e1c-e125-11e9-81b4-2a2ae2dbcce4",
+      "name": "Abraham Lincoln",
+      "gender": "male",
+      "isStarred": true
+    }
+  ]
 }
