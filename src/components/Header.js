@@ -35,11 +35,13 @@ const Header = ({ isHomePage }) => {
               Add Friend
             </Button>
           </Link>
-        ) : <Link to="/">
-          <Button variant="contained" color="secondary">
-            Back Home
-          </Button>
-        </Link>}
+        ) : (
+          <Link to="/">
+            <Button variant="contained" color="secondary">
+              Back Home
+            </Button>
+          </Link>
+        )}
       </Toolbar>
     </AppBar>
   );

@@ -9,13 +9,13 @@ import TableHeader from "./TableHeader";
 
 const { shape, arrayOf } = PropTypes;
 
-const FriendsList = ({ friends }) => {
+const FriendsList = ({ friends, filterText }) => {
   return (
     <>
       <Paper className="m-4 mt-0">
         <Table className="p-2">
           <TableHeader />
-          <FriendsTableBody friends={friends} />
+          <FriendsTableBody friends={friends} filterText={filterText} />
         </Table>
       </Paper>
     </>

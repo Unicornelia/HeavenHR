@@ -41,6 +41,30 @@
       "name": "Beyond Page",
       "gender": "female",
       "isStarred": false
+    },
+    {
+      "id": "1752eca2-8b28-46cc-a8ec-f0b4ac625130",
+      "name": "Jane Austen",
+      "gender": "female",
+      "isStarred": true
+    },
+    {
+      "id": "6982e1b7-258a-44e0-b59a-253cf63cf663",
+      "name": "Eliza Page",
+      "gender": "female",
+      "isStarred": false
+    },
+    {
+      "id": "57aa6c0f-d842-4414-bb79-f3833f26c209",
+      "name": "Jane Aunty",
+      "gender": "female",
+      "isStarred": false
+    },
+    {
+      "id": "22353c27-f124-4c2e-9fdb-10b5a8877a4f",
+      "name": "Clark Kent",
+      "gender": "male",
+      "isStarred": false
     }
   ]
 }
