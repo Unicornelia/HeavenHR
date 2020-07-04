@@ -18,7 +18,7 @@ const store = createStore(rootReducer, applyMiddleware(thunk));
 
 store.dispatch(fetchAllFriends());
 
-function App() {
+const App = () => {
   return (
     <Provider store={store}>
       <Router history={history}>

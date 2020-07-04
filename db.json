@@ -23,6 +23,24 @@
       "name": "John Doe",
       "gender": "male",
       "isStarred": false
+    },
+    {
+      "id": "f1ebba2c-da16-4d81-b69e-6bc42723fc54",
+      "name": "Will Smith",
+      "gender": "male",
+      "isStarred": false
+    },
+    {
+      "id": "586482be-c4ae-4c8d-b209-96df677cba88",
+      "name": "Melory Jones",
+      "gender": "female",
+      "isStarred": false
+    },
+    {
+      "id": "0aaada19-0cab-4dde-b8ba-58bee7170c06",
+      "name": "Beyond Page",
+      "gender": "female",
+      "isStarred": false
     }
   ]
 }
