@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ADD_FRIEND, DELETE_FRIEND, FETCH_FRIEND } from "./types";
+import { ADD_FRIEND, FETCH_FRIEND, UPDATE_FRIEND } from './types'
 
 const friendsListUrl = "http://localhost:3020/friends";
 
@@ -28,25 +28,28 @@ export const addFriendSuccess = data => {
   };
 };
 
-export const deleteFriendSuccess = id => {
-  return {
-    type: DELETE_FRIEND,
-    payload: {
-      id
-    }
-  };
-};
-
-export const deleteFriend = id => {
+export const updateFriend = friend => {
   return dispatch => {
     return axios
-      .get(`${friendsListUrl}/delete/${id}`)
+      .put(`${friendsListUrl}/update/${friend.id}`)
       .then(response => {
-        dispatch(deleteFriendSuccess(response.data));
+        dispatch(updateFriendSuccess(response.data));
       })
       .catch(error => {
         throw error;
       });
+  };
+}
+
+export const updateFriendSuccess = data => {
+  return {
+    type: UPDATE_FRIEND,
+    payload: {
+      id: data.id,
+      name: data.name,
+      gender: data.gender,
+      isStarred: data.isStarred
+    }
   };
 };
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import FriendsList from "../components/FriendsList";
+import FriendsList from "../components/FriendsList/index";
 import Header from "../components/Header";
 import Pagination from "../components/Pagination";
 
@@ -9,7 +9,7 @@ const { shape, arrayOf } = PropTypes;
 
 const FriendsContainer = ({ friends }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(5);
+  const [itemsPerPage] = useState(5);
 
   //Get current friends
   const indexOfLastFriend = currentPage * itemsPerPage;
