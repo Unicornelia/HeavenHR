@@ -6,16 +6,30 @@ import FriendItem from "./FriendItem";
 
 const { shape, arrayOf } = PropTypes;
 
-const FriendsTableBody = ({ friends, filterText }) => {
-  const filteredList = friends.filter(friend => {
-    return friend.name.toLowerCase().indexOf(filterText.toLowerCase()) >= 0
-  })
+const FriendsTableBody = ({
+  friends,
+  filterText,
+  selectedGender,
+  selectedStatus
+}) => {
+  const filteredList = friends
+    .filter(friend => {
+      return friend.name.toLowerCase().indexOf(filterText.toLowerCase()) >= 0;
+    })
+    .filter(friend => {
+      return selectedGender !== "all"
+        ? friend.gender === selectedGender
+        : friend.gender;
+    }).filter(friend => {
+      return selectedStatus !== "all"
+        ? friend.isStarred ? selectedStatus
+        : friend.isStarred : friend.isStarred;
+    });
 
   return (
     <>
       <TableBody>
-        {filteredList
-          .map(({ id, name, gender, isStarred }) => (
+        {filteredList.map(({ id, name, gender, isStarred }) => (
           <FriendItem
             key={id}
             id={id}

@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ADD_FRIEND, FETCH_FRIEND, UPDATE_FRIEND } from './types'
+import { ADD_FRIEND, FETCH_FRIEND, UPDATE_FRIEND } from "./types";
 
 const friendsListUrl = "http://localhost:3020/friends";
 
@@ -31,7 +31,7 @@ export const addFriendSuccess = data => {
 export const updateFriend = friend => {
   return dispatch => {
     return axios
-      .put(`${friendsListUrl}/update/${friend.id}`)
+      .put(`${friendsListUrl}/${friend.id}`, friend)
       .then(response => {
         dispatch(updateFriendSuccess(response.data));
       })
@@ -39,17 +39,12 @@ export const updateFriend = friend => {
         throw error;
       });
   };
-}
+};
 
 export const updateFriendSuccess = data => {
   return {
     type: UPDATE_FRIEND,
-    payload: {
-      id: data.id,
-      name: data.name,
-      gender: data.gender,
-      isStarred: data.isStarred
-    }
+    payload: {...data, name: data.name}
   };
 };
 
