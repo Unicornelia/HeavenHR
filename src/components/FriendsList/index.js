@@ -2,18 +2,20 @@ import React, { useState } from "react";
 import * as PropTypes from "prop-types";
 
 import SearchIcon from "@material-ui/icons/Search";
-import InputBase from "@material-ui/core/InputBase";
-import Paper from "@material-ui/core/Paper";
-import Table from "@material-ui/core/Table";
+import {
+  InputBase,
+  Paper,
+  Table,
+  Select,
+  MenuItem,
+  TableHead,
+  TableRow,
+  TableCell
+} from "@material-ui/core";
 
+import { useStyles } from "./styles";
 import FriendsTableBody from "../FriendsTableBody";
 import TableHeader from "../TableHeader";
-import Select from "@material-ui/core/Select";
-import MenuItem from "@material-ui/core/MenuItem";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import TableCell from "@material-ui/core/TableCell";
-import { useStyles } from './styles'
 
 const { shape, arrayOf } = PropTypes;
 
@@ -21,7 +23,7 @@ const FriendsList = ({ friends }) => {
   const classes = useStyles();
   const [filterText, setFilterText] = useState("");
   const [gender, setGender] = useState("all");
-  const [status, setStatus] = useState("all");
+  const [status, setStatus] = useState(true);
 
   const handleGenderChange = e => {
     setGender(e.target.value);
@@ -66,7 +68,6 @@ const FriendsList = ({ friends }) => {
                 <Select value={status} onChange={handleStatusChange}>
                   <MenuItem value={true}>True</MenuItem>
                   <MenuItem value={false}>False</MenuItem>
-                  <MenuItem value={'all'}>All</MenuItem>
                 </Select>
               </TableCell>
               <TableCell className="text-uppercase" />
@@ -86,11 +87,20 @@ const FriendsList = ({ friends }) => {
 };
 
 FriendsList.propTypes = {
-  friends: arrayOf(shape({}))
+  friends: arrayOf(
+    shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      gender: PropTypes.string.isRequired,
+      isStarred: PropTypes.bool.isRequired
+    })
+  )
 };
 
 FriendsList.defaultProps = {
   friends: []
 };
+
+FriendsList.displayName = "FriendsList";
 
 export default FriendsList;

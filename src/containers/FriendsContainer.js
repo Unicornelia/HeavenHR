@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import FriendsList from "../components/FriendsList/index";
-import Header from "../components/Header";
-import Pagination from "../components/Pagination";
+import Header from "../components/Header/index";
+import Pagination from "../components/Pagination/index";
 
 const { shape, arrayOf } = PropTypes;
 

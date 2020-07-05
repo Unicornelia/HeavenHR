@@ -1,8 +1,8 @@
 import React from "react";
 import * as PropTypes from "prop-types";
 
-import TableBody from "@material-ui/core/TableBody";
-import FriendItem from "./FriendItem";
+import { TableBody } from "@material-ui/core";
+import FriendItem from "./FriendItem/index";
 
 const { shape, arrayOf } = PropTypes;
 
@@ -20,10 +20,13 @@ const FriendsTableBody = ({
       return selectedGender !== "all"
         ? friend.gender === selectedGender
         : friend.gender;
-    }).filter(friend => {
+    })
+    .filter(friend => {
       return selectedStatus !== "all"
-        ? friend.isStarred ? selectedStatus
-        : friend.isStarred : friend.isStarred;
+        ? friend.isStarred
+          ? selectedStatus
+          : friend.isStarred
+        : friend.isStarred;
     });
 
   return (

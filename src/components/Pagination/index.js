@@ -1,17 +1,7 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Link from '@material-ui/core/Link'
 
-const useStyles = makeStyles(theme => ({
-  ul: {
-    listStyle: "none",
-    display: "flex",
-    justifyContent: "center"
-  },
-  li: {
-    margin: theme.spacing(1)
-  }
-}));
+import { Link } from "@material-ui/core";
+import { useStyles } from "./styles";
 
 const Pagination = ({ itemsPerPage, total, paginate }) => {
   const pageNumbers = [];
@@ -26,7 +16,8 @@ const Pagination = ({ itemsPerPage, total, paginate }) => {
       <ul className={classes.ul}>
         {pageNumbers.map(number => (
           <li className={classes.li} key={number}>
-            <Link color="secondary"
+            <Link
+              color="secondary"
               onClick={() => {
                 paginate(number);
               }}

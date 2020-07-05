@@ -1,33 +1,24 @@
 import React, { useState } from "react";
 import classnames from "classnames";
-import { useHistory } from "react-router-dom";
+import { connect } from "react-redux";
 
-import TableCell from "@material-ui/core/TableCell";
-import TableRow from "@material-ui/core/TableRow";
-import IconButton from "@material-ui/core/IconButton";
+import {
+  TableCell,
+  TableRow,
+  IconButton,
+  Tooltip,
+  Modal,
+  TextField,
+  Button
+} from "@material-ui/core";
 import BorderColorIcon from "@material-ui/icons/BorderColor";
-import { makeStyles, Tooltip } from "@material-ui/core";
-import Modal from "@material-ui/core/Modal";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import { updateFriend } from '../actions'
-import { connect } from 'react-redux'
 
-const useStyles = makeStyles(theme => ({
-  paper: {
-    position: "absolute",
-    width: 400,
-    backgroundColor: theme.palette.background.paper,
-    border: "2px solid #000",
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3)
-  }
-}));
+import { updateFriend } from "../../actions";
+import { getModalStyle, useStyles } from "./styles";
 
 const FriendItem = props => {
   const { id, name, gender, isStarred } = props;
   const classes = useStyles();
-  const history = useHistory();
   const [status, setStatus] = useState(isStarred);
   const [isEditing, setIsEditing] = useState(false);
   const [itemName, setItemName] = useState(name);
@@ -37,17 +28,6 @@ const FriendItem = props => {
     setStatus(!status);
   };
 
-  function getModalStyle() {
-    const top = 50;
-    const left = 50;
-
-    return {
-      top: `${top}%`,
-      left: `${left}%`,
-      transform: `translate(-${top}%, -${left}%)`
-    };
-  }
-
   const [modalStyle] = React.useState(getModalStyle);
 
   const handleUpdateName = e => {
@@ -55,10 +35,9 @@ const FriendItem = props => {
   };
 
   const handleSubmitUpdatedName = () => {
-    const updatedFriend = { id, name: itemName, gender, isStarred };
-    props.onUpdateFriend(updatedFriend)
-    setIsEditing(false)
-    history.push("/");
+    const updatedFriend = { name: itemName, gender, status };
+    props.onUpdateFriend(updatedFriend);
+    setIsEditing(false);
   };
 
   const handleClose = () => {

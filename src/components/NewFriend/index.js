@@ -2,23 +2,26 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import faker from "faker";
 
-import Paper from "@material-ui/core/Paper";
-import { makeStyles } from "@material-ui/core/styles";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Radio from "@material-ui/core/Radio";
-import Checkbox from "@material-ui/core/Checkbox";
-import Header from "./Header";
-import Tooltip from "@material-ui/core/Tooltip";
+import {
+  Paper,
+  TextField,
+  Button,
+  RadioGroup,
+  FormControlLabel,
+  Radio,
+  Checkbox,
+  Tooltip
+} from "@material-ui/core";
+
+import Header from "../Header";
+import { useStyles } from "./styles";
 
 const NewFriend = props => {
   const [name, setName] = useState("");
   const [gender, setGender] = useState("");
   const [isStarred, setIsStarred] = useState(false);
-
   const history = useHistory();
+  const classes = useStyles();
 
   const handleNameChange = e => {
     setName(e.target.value);
@@ -40,21 +43,6 @@ const NewFriend = props => {
       history.push("/");
     }
   };
-
-  const useStyles = makeStyles(theme => ({
-    root: {
-      display: "flex",
-      justifyContent: "center",
-      flexWrap: "wrap",
-      "& > *": {
-        margin: theme.spacing(1),
-        width: theme.spacing(50),
-        height: theme.spacing(8)
-      }
-    }
-  }));
-
-  const classes = useStyles();
 
   return (
     <>
@@ -122,5 +110,7 @@ const NewFriend = props => {
     </>
   );
 };
+
+NewFriend.displayName = "NewFriend";
 
 export default NewFriend;
