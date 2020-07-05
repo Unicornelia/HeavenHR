@@ -9,9 +9,9 @@ import Button from "@material-ui/core/Button";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Radio from "@material-ui/core/Radio";
-
-import Header from "./Header";
 import Checkbox from "@material-ui/core/Checkbox";
+import Header from "./Header";
+import Tooltip from "@material-ui/core/Tooltip";
 
 const NewFriend = props => {
   const [name, setName] = useState("");
@@ -102,15 +102,19 @@ const NewFriend = props => {
                 label="Starred?"
               />
             </RadioGroup>
-
-            <Button
-              style={{ width: "80px", height: "40px" }}
-              variant="outlined"
-              color="secondary"
-              onClick={e => handleSubmit(e)}
+            <Tooltip
+              title="Provide details for name and gender"
+              placement="top"
             >
-              Submit
-            </Button>
+              <Button
+                style={{ width: "80px", height: "40px" }}
+                variant="outlined"
+                color="secondary"
+                onClick={e => handleSubmit(e)}
+              >
+                Submit
+              </Button>
+            </Tooltip>
           </form>
         </Paper>
       </div>
