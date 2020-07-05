@@ -65,6 +65,18 @@
       "name": "Clark Kent",
       "gender": "male",
       "isStarred": false
+    },
+    {
+      "id": "b87fbfc2-6a53-46d5-a3be-97ef344ee1bd",
+      "name": "Louis Lane",
+      "gender": "female",
+      "isStarred": false
+    },
+    {
+      "id": "2f14d05c-9d6d-48aa-8dec-07ff1f69532b",
+      "name": "Anthony Kiedis",
+      "gender": "male",
+      "isStarred": false
     }
   ]
 }
