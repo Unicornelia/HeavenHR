@@ -63,11 +63,12 @@ const NewFriend = props => {
         <Paper className="m-4 mt-0" elevation={4} style={{ margin: "auto 0" }}>
           <form className={classes.root} noValidate autoComplete="off">
             <TextField
+              required
               id="standard-disabled"
               label="name"
               onChange={e => handleNameChange(e)}
             />
-            <RadioGroup aria-label="gender" value="male" label="male">
+            <RadioGroup required aria-label="gender" value="male" label="male">
               <FormControlLabel
                 value="female"
                 control={
