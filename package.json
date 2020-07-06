@@ -2,7 +2,10 @@
   "name": "heavenhr-react-interview",
   "version": "0.1.0",
   "jest": {
-    "verbose": true
+    "verbose": true,
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
   },
   "private": true,
   "dependencies": {
@@ -11,6 +14,7 @@
     "babel-jest": "^24.9.0",
     "classnames": "^2.2.6",
     "enzyme": "^3.11.0",
+    "enzyme-to-json": "^3.5.0",
     "fetch-mock": "^9.10.3",
     "jest": "^26.1.0",
     "json-server": "^0.15.1",
