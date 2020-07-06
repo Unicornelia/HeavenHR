@@ -118,9 +118,9 @@ const FriendItem = props => {
             onClick={handleStarClick}
           >
             {itemStar ? (
-              <i className={"fa fa-star-o"} />
-            ) : (
               <i className={"fa fa-star"} />
+            ) : (
+              <i className={"fa fa-star-o"} />
             )}
           </Button>
         }

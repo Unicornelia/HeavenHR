@@ -16,14 +16,25 @@ import {
 import { useStyles } from "./styles";
 import FriendsTableBody from "../FriendsTableBody";
 import TableHeader from "../TableHeader";
+import Pagination from '../Pagination'
 
 const { shape, arrayOf } = PropTypes;
 
-const FriendsList = ({friends}) => {
+const FriendsList = ({ friends }) => {
   const classes = useStyles();
   const [filterText, setFilterText] = useState("");
   const [gender, setGender] = useState("all");
-  const [status, setStatus] = useState('all');
+  const [status, setStatus] = useState("all");
+  const [idOrder, setIdOrder] = useState("all");
+  const [nameOrder, setNameOrder] = useState("all");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [itemsPerPage] = useState(5);
+  const indexOfLastFriend = currentPage * itemsPerPage;
+  const indexOfFirstFriend = indexOfLastFriend - itemsPerPage;
+
+  const paginate = pageNumber => {
+    setCurrentPage(pageNumber);
+  };
 
   const handleGenderChange = e => {
     setGender(e.target.value);
@@ -32,6 +43,14 @@ const FriendsList = ({friends}) => {
   const handleStatusChange = e => {
     setStatus(e.target.value);
   };
+
+  const handleIdOrderChange = e => {
+    setIdOrder(e.target.value)
+  }
+
+  const handleNameOrderChange = e => {
+    setNameOrder(e.target.value)
+  }
 
   return (
     <>
@@ -55,8 +74,20 @@ const FriendsList = ({friends}) => {
         <Table className="p-2">
           <TableHead>
             <TableRow>
-              <TableCell className="text-uppercase">Sort by id</TableCell>
-              <TableCell className="text-uppercase">Sort by name</TableCell>
+              <TableCell>
+                <Select value={idOrder} onChange={handleIdOrderChange}>
+                  <MenuItem value={"ascending"}>Ascending</MenuItem>
+                  <MenuItem value={"descending"}>Descending</MenuItem>
+                  <MenuItem value={"all"}>Sort by ID</MenuItem>
+                </Select>
+              </TableCell>
+              <TableCell>
+                <Select value={nameOrder} onChange={handleNameOrderChange}>
+                  <MenuItem value={"ascending"}>Ascending</MenuItem>
+                  <MenuItem value={"descending"}>Descending</MenuItem>
+                  <MenuItem value={"all"}>Sort by name</MenuItem>
+                </Select>
+              </TableCell>
               <TableCell>
                 <Select value={gender} onChange={handleGenderChange}>
                   <MenuItem value={"male"}>Male</MenuItem>
@@ -80,8 +111,17 @@ const FriendsList = ({friends}) => {
             filterText={filterText}
             selectedGender={gender}
             selectedStatus={status}
+            selectedIdOrder={idOrder}
+            selectedNameOrder={nameOrder}
+            indexOfFirstFriend={indexOfFirstFriend}
+            indexOfLastFriend={indexOfLastFriend}
           />
         </Table>
+        <Pagination
+          itemsPerPage={itemsPerPage}
+          total={friends.length}
+          paginate={paginate}
+        />
       </Paper>
     </>
   );

@@ -1,40 +1,29 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import FriendsList from "../components/FriendsList/index";
 import Header from "../components/Header/index";
-import Pagination from "../components/Pagination/index";
 
 const { shape, arrayOf } = PropTypes;
 
 const FriendsContainer = ({ friends }) => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(5);
-
-  //Get current friends
-  const indexOfLastFriend = currentPage * itemsPerPage;
-  const indexOfFirstFriend = indexOfLastFriend - itemsPerPage;
-  const currentFriends = friends.slice(indexOfFirstFriend, indexOfLastFriend);
-
-  const paginate = pageNumber => {
-    setCurrentPage(pageNumber);
-  };
-
   return (
     <>
       <Header isHomePage={true} />
-      <FriendsList friends={currentFriends} />
-      <Pagination
-        itemsPerPage={itemsPerPage}
-        total={friends.length}
-        paginate={paginate}
-      />
+      <FriendsList friends={friends} />
     </>
   );
 };
 
 FriendsContainer.propTypes = {
-  friends: arrayOf(shape({}))
+  friends: arrayOf(
+    shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      gender: PropTypes.string.isRequired,
+      isStarred: PropTypes.bool.isRequired
+    })
+  )
 };
 
 FriendsContainer.defaultProps = {

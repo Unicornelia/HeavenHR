@@ -3,13 +3,26 @@ import * as PropTypes from "prop-types";
 
 import { TableBody } from "@material-ui/core";
 import FriendItem from "./FriendItem/index";
+import { sort_by } from "../utils/genericSorter";
 
 const FriendsTableBody = ({
   friends,
   filterText,
   selectedGender,
-  selectedStatus
+  selectedStatus,
+  selectedIdOrder,
+  selectedNameOrder,
+  indexOfFirstFriend,
+  indexOfLastFriend
 }) => {
+  const sortByName = sort_by(
+    "name",
+    selectedNameOrder === "descending",
+    a => a
+  );
+
+  const sortById = sort_by("id", selectedIdOrder === "descending", a => a);
+
   const filteredList = friends
     .filter(friend => {
       return friend.name.toLowerCase().indexOf(filterText.toLowerCase()) >= 0;
@@ -20,13 +33,19 @@ const FriendsTableBody = ({
         : friend.gender === selectedGender;
     })
     .filter(friend => {
-      return selectedStatus === true ? friend.isStarred : !friends.isStarred;
-    });
+      return selectedStatus === true ? friend.isStarred : !friend.isStarred;
+    })
+    .sort( sortByName || sortById);
+
+  const currentFriends = filteredList.slice(
+    indexOfFirstFriend,
+    indexOfLastFriend
+  );
 
   return (
     <>
       <TableBody>
-        {filteredList.map(({ id, name, gender, isStarred }) => (
+        {currentFriends.map(({ id, name, gender, isStarred }) => (
           <FriendItem
             key={id}
             id={id}
