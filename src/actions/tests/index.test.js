@@ -20,6 +20,7 @@ describe("actions", () => {
       gender: "male",
       isStarred: false
     };
+
     const expectedAction = {
       type: types.ADD_FRIEND,
       payload: newFriend
