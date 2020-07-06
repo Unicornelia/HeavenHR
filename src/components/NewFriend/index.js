@@ -95,10 +95,6 @@ const NewFriend = props => {
                 label="Starred?"
               />
             </RadioGroup>
-            <Tooltip
-              title="Provide details for name and gender"
-              placement="top"
-            >
               <Button
                 style={{ width: "80px", height: "40px" }}
                 variant="outlined"
@@ -108,7 +104,6 @@ const NewFriend = props => {
               >
                 Submit
               </Button>
-            </Tooltip>
           </form>
         </Paper>
       </div>
