@@ -1,3 +1,14 @@
+#HeavenHR
+
+A SPA listing friends, ordering them by various criteria, users have an option to add and edit new friends.
+
+## Technologies
+- ES6
+- React
+- Redux
+- Jest
+- Material for styling
+
 ## Usage
 
 ```
@@ -14,8 +25,6 @@ A RESTful API for friends is provided with the challenge, to run the server use 
 ```
 you can find friends list here: http://localhost:3020/friends. 
 
-#### You should replace the static reducer data with the server data
-
 #### Use cases
 
 #### The user shall be able to:
@@ -29,31 +38,4 @@ you can find friends list here: http://localhost:3020/friends.
 - Toggle staring when I click on star button (should persist when the page is reloaded)
 
 
-## Evaluation criteria
-
-#### Technology requirements
-__React__ and __JavaScript__ and __Redux__ are mandatory requirements.
-you can use any libraries.
-ES6 is highly encouraged.
-
-
-## Must Have
-- The application must start
-- The application must be a single-page application (SPA)
-- The application must be divided into components
-- The list and details page must cover all use cases
-- The application must include meaningful tests (Tests that do not validate logic or component behavior, e.g. snapshot tests, are not counted)
-
-## Nice to Have
-- Using styled-component library
-- The application follows good naming convention
-- The application is responsive
-- Styles are shipped separately
-
-## Negative Points
-- No componentization
-- Inline styles
-- No control over re-rendering (e.g. not using id for a list)
-- Bad naming
-- Direct DOM manipulation
 
