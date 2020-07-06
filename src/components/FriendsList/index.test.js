@@ -10,7 +10,7 @@ configure({ adapter: new Adapter() });
 
 describe("<FriendsList/>", () => {
   const mockStore = configureStore();
-  const initialState = [
+  const friends = [
     {
       id: faker.random.uuid(),
       name: faker.name.findName(),
@@ -24,12 +24,12 @@ describe("<FriendsList/>", () => {
       isStarred: false
     }
   ];
-  const store = mockStore(initialState);
+  const store = mockStore(friends);
 
   it("should match snapshot", () => {
     const wrapper = shallow(
       <Provider store={store}>
-        <FriendsList friends={initialState}/>
+        <FriendsList friends={friends}/>
       </Provider>
     );
 
@@ -39,13 +39,19 @@ describe("<FriendsList/>", () => {
     expect(store.getActions()).toMatchSnapshot();
   });
 
-  it("should find friends table body", () => {
+  it("should find friends table body with initial props", () => {
     const wrapper = mount(
       <Provider store={store}>
-        <FriendsList friends={initialState}/>
+        <FriendsList friends={friends}/>
       </Provider>
     );
 
-    expect(wrapper.find('FriendsTableBody')).toHaveLength(1)
+    const tableBody = wrapper.find('FriendsTableBody')
+
+    expect(tableBody).toHaveLength(1)
+    expect(tableBody.prop('friends')).toEqual(friends)
+    expect(tableBody.prop('selectedGender')).toEqual('all')
+    expect(tableBody.prop('selectedStatus')).toEqual('all')
+    expect(tableBody.prop('filterText')).toEqual('')
   });
 });
