@@ -23,6 +23,10 @@ const NewFriend = props => {
   const history = useHistory();
   const classes = useStyles();
 
+  function validateForm() {
+    return name.length > 0 && gender.length > 0;
+  }
+
   const handleNameChange = e => {
     setName(e.target.value);
   };
@@ -100,6 +104,7 @@ const NewFriend = props => {
                 variant="outlined"
                 color="secondary"
                 onClick={e => handleSubmit(e)}
+                disabled={!validateForm()}
               >
                 Submit
               </Button>
