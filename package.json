@@ -1,11 +1,16 @@
 {
   "name": "heavenhr-react-interview",
   "version": "0.1.0",
+  "jest": {
+    "verbose": true
+  },
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.4.3",
     "@material-ui/lab": "^4.0.0-alpha.56",
+    "babel-jest": "^24.9.0",
     "classnames": "^2.2.6",
+    "jest": "^26.1.0",
     "json-server": "^0.15.1",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
@@ -18,7 +23,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest",
+    "test:watch": "yarn test -- --watch",
     "eject": "react-scripts eject",
     "start-server": "json-server --watch --port 3020 db.json"
   },
@@ -38,6 +44,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.10.4",
     "@material-ui/icons": "^4.9.1",
     "axios": "^0.19.2",
     "faker": "^4.1.0",
