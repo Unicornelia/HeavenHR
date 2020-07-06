@@ -4,9 +4,14 @@ import { ADD_FRIEND, FETCH_FRIEND, UPDATE_FRIEND } from "./types";
 const friendsListUrl = "http://localhost:3020/friends";
 
 export const addFriend = ({ id, name, gender, isStarred }) => {
+  const request = axios({
+    method: "POST",
+    url: `${friendsListUrl}`,
+    data: { id, name, gender, isStarred }
+  });
+
   return dispatch => {
-    return axios
-      .post(`${friendsListUrl}`, { id, name, gender, isStarred })
+    return request
       .then(response => {
         dispatch(addFriendSuccess(response.data));
       })
@@ -29,9 +34,14 @@ export const addFriendSuccess = data => {
 };
 
 export const updateFriend = friend => {
+  const request = axios({
+    method: "PUT",
+    url: `${friendsListUrl}/${friend.id}`,
+    data: friend
+  });
+
   return dispatch => {
-    return axios
-      .put(`${friendsListUrl}/${friend.id}`, friend)
+    return request
       .then(response => {
         dispatch(updateFriendSuccess(response.data));
       })
@@ -44,7 +54,7 @@ export const updateFriend = friend => {
 export const updateFriendSuccess = data => {
   return {
     type: UPDATE_FRIEND,
-    payload: {...data, name: data.name}
+    payload: { ...data, name: data.name }
   };
 };
 
@@ -56,9 +66,13 @@ export const fetchFriend = friends => {
 };
 
 export const fetchAllFriends = () => {
+  const request = axios({
+    method: "GET",
+    url: `${friendsListUrl}`
+  });
+
   return dispatch => {
-    return axios
-      .get(friendsListUrl)
+    return request
       .then(response => {
         dispatch(
           fetchFriend(
