@@ -19,11 +19,11 @@ import TableHeader from "../TableHeader";
 
 const { shape, arrayOf } = PropTypes;
 
-const FriendsList = ({ friends }) => {
+const FriendsList = ({friends}) => {
   const classes = useStyles();
   const [filterText, setFilterText] = useState("");
   const [gender, setGender] = useState("all");
-  const [status, setStatus] = useState(true);
+  const [status, setStatus] = useState('all');
 
   const handleGenderChange = e => {
     setGender(e.target.value);
@@ -68,6 +68,7 @@ const FriendsList = ({ friends }) => {
                 <Select value={status} onChange={handleStatusChange}>
                   <MenuItem value={true}>True</MenuItem>
                   <MenuItem value={false}>False</MenuItem>
+                  <MenuItem value={"all"}>All</MenuItem>
                 </Select>
               </TableCell>
               <TableCell className="text-uppercase" />

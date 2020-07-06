@@ -19,23 +19,29 @@ import { getModalStyle, useStyles } from "./styles";
 const FriendItem = props => {
   const { id, name, gender, isStarred } = props;
   const classes = useStyles();
-  const [status, setStatus] = useState(isStarred);
+  const [itemStar, setItemStar] = useState(isStarred);
   const [isEditing, setIsEditing] = useState(false);
   const [itemName, setItemName] = useState(name);
 
-  //TODO fix this
-  const handleStarClick = () => {
-    setStatus(!status);
+  const [modalStyle] = React.useState(getModalStyle);
+
+  //TODO needs fixing
+  const toggleItemStar = () => {
+    setItemStar(!itemStar);
   };
 
-  const [modalStyle] = React.useState(getModalStyle);
+  const handleStarClick = () => {
+    toggleItemStar();
+    const updatedFriend = { id, name, gender, isStarred: itemStar };
+    props.onUpdateFriend(updatedFriend);
+  };
 
   const handleUpdateName = e => {
     setItemName(e.target.value);
   };
 
   const handleSubmitUpdatedName = () => {
-    const updatedFriend = { name: itemName, gender, status };
+    const updatedFriend = { id, name: itemName, gender, isStarred };
     props.onUpdateFriend(updatedFriend);
     setIsEditing(false);
   };
@@ -107,10 +113,10 @@ const FriendItem = props => {
             className="btn btn-light text-primary"
             onClick={handleStarClick}
           >
-            {status ? (
-              <i className={"fa fa-star"} />
-            ) : (
+            {itemStar ? (
               <i className={"fa fa-star-o"} />
+            ) : (
+              <i className={"fa fa-star"} />
             )}
           </button>
         }

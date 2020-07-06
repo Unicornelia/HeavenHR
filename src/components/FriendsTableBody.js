@@ -4,8 +4,6 @@ import * as PropTypes from "prop-types";
 import { TableBody } from "@material-ui/core";
 import FriendItem from "./FriendItem/index";
 
-const { shape, arrayOf } = PropTypes;
-
 const FriendsTableBody = ({
   friends,
   filterText,
@@ -17,16 +15,12 @@ const FriendsTableBody = ({
       return friend.name.toLowerCase().indexOf(filterText.toLowerCase()) >= 0;
     })
     .filter(friend => {
-      return selectedGender !== "all"
-        ? friend.gender === selectedGender
-        : friend.gender;
+      return selectedGender === "all"
+        ? friend.gender
+        : friend.gender === selectedGender;
     })
     .filter(friend => {
-      return selectedStatus !== "all"
-        ? friend.isStarred
-          ? selectedStatus
-          : friend.isStarred
-        : friend.isStarred;
+      return selectedStatus === true ? friend.isStarred : !friends.isStarred;
     });
 
   return (
@@ -46,8 +40,17 @@ const FriendsTableBody = ({
   );
 };
 
+const { shape, arrayOf } = PropTypes;
+
 FriendsTableBody.propTypes = {
-  friends: arrayOf(shape({}))
+  friends: arrayOf(
+    shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      gender: PropTypes.string.isRequired,
+      isStarred: PropTypes.bool.isRequired
+    })
+  )
 };
 
 FriendsTableBody.defaultProps = {
