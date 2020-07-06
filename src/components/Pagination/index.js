@@ -17,6 +17,7 @@ const Pagination = ({ itemsPerPage, total, paginate }) => {
         {pageNumbers.map(number => (
           <li className={classes.li} key={number}>
             <Link
+              id="pages"
               color="secondary"
               onClick={() => {
                 paginate(number);
