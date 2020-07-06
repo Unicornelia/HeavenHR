@@ -63,10 +63,10 @@ export const fetchAllFriends = () => {
         dispatch(
           fetchFriend(
             response.data.map(friend => ({
-              id: `${friend.id}`,
-              name: `${friend.name}`,
-              gender: `${friend.gender}`,
-              isStarred: `${friend.isStarred}`
+              id: friend.id,
+              name: friend.name,
+              gender: friend.gender,
+              isStarred: friend.isStarred
             }))
           )
         );
