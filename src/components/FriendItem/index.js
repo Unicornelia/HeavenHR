@@ -51,12 +51,13 @@ const FriendItem = props => {
   };
 
   return (
-    <TableRow key={id}>
+    <TableRow key={id} className="tableRow">
       <TableCell className="text-secondary">{id}</TableCell>
       <TableCell className="text-secondary">
         {name}
         <Tooltip title={"Update name"}>
           <IconButton
+            className="iconButton"
             area-label="update"
             fontSize="small"
             onClick={() => setIsEditing(true)}
@@ -78,22 +79,24 @@ const FriendItem = props => {
                 defaultValue={itemName}
                 onChange={e => handleUpdateName(e)}
               />
-              <Button
-                style={{ width: "40px", height: "30px" }}
-                variant="outlined"
-                color="secondary"
-                onClick={e => handleSubmitUpdatedName(e)}
-              >
-                Submit
-              </Button>
-              <Button
-                style={{ width: "40px", height: "30px" }}
-                variant="outlined"
-                color="secondary"
-                onClick={handleClose}
-              >
-                Cancel
-              </Button>
+              <span className={classes.buttons}>
+                <Button
+                  id="submit"
+                  variant="outlined"
+                  color="secondary"
+                  onClick={e => handleSubmitUpdatedName(e)}
+                >
+                  Submit
+                </Button>
+                <Button
+                  id="cancel"
+                  variant="outlined"
+                  color="secondary"
+                  onClick={handleClose}
+                >
+                  Cancel
+                </Button>
+              </span>
             </div>
           </Modal>
         ) : null}
@@ -108,7 +111,8 @@ const FriendItem = props => {
       </TableCell>
       <TableCell>
         {
-          <button
+          <Button
+            id="star"
             type="button"
             className="btn btn-light text-primary"
             onClick={handleStarClick}
@@ -118,7 +122,7 @@ const FriendItem = props => {
             ) : (
               <i className={"fa fa-star"} />
             )}
-          </button>
+          </Button>
         }
       </TableCell>
     </TableRow>
